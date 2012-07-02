@@ -1,0 +1,22 @@
+Gorde zure lotura gogoenak klik batekin
+
+Gorde ondoko kodigoa zure laster marken barruan. Gogoko duzun orrian zaudenean, 
+emaiozu loturari eta gordeta eduki duzu. On egin! 
+
+javascript:q=(escape(document.location.href));(function(){window.open('http://localhost/elkartrukatu/web/index.php/gozatu?url='+q);})();
+
+
+-----------------------------------------------------------------
+
+Guarda tus enlaces favoritos con un solo click.
+
+Gaurda el siguiente código dentro de tus favoritos. Cuando estes en 
+la página que te gusta, dale al enlace y se quedará guardado. Buen provecho!
+
+
+---------------------------------------------------------------------
+
+Save your favorite link only with one click.
+
+Save the link above on your bookmarks. When you are on the favorite page
+click on the bookmarks and the page will be save. Happy day!
