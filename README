@@ -13,6 +13,7 @@ Guarda tus enlaces favoritos con un solo click.
 Gaurda el siguiente código dentro de tus favoritos. Cuando estes en 
 la página que te gusta, dale al enlace y se quedará guardado. Buen provecho!
 
+javascript:q=(escape(document.location.href));(function(){window.open('http://localhost/elkartrukatu/web/index.php/gozatu?url='+q);})();
 
 ---------------------------------------------------------------------
 
@@ -20,3 +21,5 @@ Save your favorite link only with one click.
 
 Save the link above on your bookmarks. When you are on the favorite page
 click on the bookmarks and the page will be save. Happy day!
+
+javascript:q=(escape(document.location.href));(function(){window.open('http://localhost/elkartrukatu/web/index.php/gozatu?url='+q);})();

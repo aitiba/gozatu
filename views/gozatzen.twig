@@ -11,7 +11,7 @@
 		{% for d in data %}
 		<tr>
 		    <td> {{ d.id }} </td>
-		    <td> {{ d.url|e }} </td>
+		    <td> <a href="{{ d.url }}"> {{ d.url }} </a></td>
 		    <td> {{ d.created }} </td>
 		    <td> {{ d.ip }} </td>
 		</tr>
