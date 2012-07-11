@@ -5,6 +5,7 @@ emaiozu loturari eta gordeta eduki duzu. On egin!
 
 javascript:q=(escape(document.location.href));(function(){window.open('http://localhost/elkartrukatu/web/index.php/gozatu?url='+q);})();
 
+Aplikazio honek composer erabiltzen du eta vendor-ak sartu gabe daude.
 
 -----------------------------------------------------------------
 
@@ -15,6 +16,7 @@ la página que te gusta, dale al enlace y se quedará guardado. Buen provecho!
 
 javascript:q=(escape(document.location.href));(function(){window.open('http://localhost/elkartrukatu/web/index.php/gozatu?url='+q);})();
 
+Esta aplicación usa composer y los vendors no están sin meter.
 ---------------------------------------------------------------------
 
 Save your favorite link only with one click.
@@ -23,3 +25,5 @@ Save the link above on your bookmarks. When you are on the favorite page
 click on the bookmarks and the page will be save. Happy day!
 
 javascript:q=(escape(document.location.href));(function(){window.open('http://localhost/elkartrukatu/web/index.php/gozatu?url='+q);})();
+
+This aplication use composer and the vendors are not inside.
