@@ -13,7 +13,7 @@ spl_autoload_register(function () {
     require_once __DIR__."/../Hazi/Lib/Generator/generator.php";
     require_once __DIR__."/../Hazi/Lib/Generator/Template/templateModel.php";
     require_once __DIR__."/../Hazi/Lib/Generator/Template/template.php";
-    require_once __DIR__."/../vendor/autoload.php";
+    require_once __DIR__."/../Hazi/Lib/Vendor/autoload.php";
 });
 
 use Symfony\Component\HttpFoundation\Request;
@@ -45,7 +45,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
+    'twig.path' => __DIR__.'/../App/Views',
 ));
 
 $app->register(new Silex\Provider\SessionServiceProvider());
