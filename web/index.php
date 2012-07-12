@@ -8,7 +8,8 @@ ini_set('display_errors','On');
 // Funcion de que se llama al hacer new del objeto __autoload()
 // http://www.php.net/manual/es/function.spl-autoload-register.php
 spl_autoload_register(function () {
-    //Hazi/Lib/Generator/gozatzen/model/gozatzen_model.php";
+    //require_once __DIR__."Hazi/Lib/Generator/gozatzen/model/gozatzen_model.php";
+    require_once __DIR__."/../generator/gozatzen/links_model.php";
     require_once __DIR__."/../Hazi/Lib/Generator/generator.php";
     require_once __DIR__."/../Hazi/Lib/Generator/Template/templateModel.php";
     require_once __DIR__."/../Hazi/Lib/Generator/Template/template.php";
@@ -26,7 +27,7 @@ $app['debug'] = true;
 // database configuration
 // /elkartrukatu/vendor/silex/silex/src/Silex/Provider/DoctrineServiceProvider.php
 // datuak BBDDtik atera edo sartzeko 
-// /elkartrukatu/vendor/silex/dbal/linb/Doctrine/DBal/Portability/Connection.php
+// /elkartrukatu/vendor/silex/dbal/lib/Doctrine/DBAL/Portability/Connection.php
 
 // TODO: sartu hau database.php fitxategi baten barruan
 // TODO: sartu titulu link bakoitzeko. Hortarako title-a scrapeatu
@@ -126,11 +127,12 @@ $app->match('/generator', function () use ($app){
     $generator = new Hazi\Lib\Generator\generator($app);
     $data = array (
                    "type" => "model",
-                   "table" => "modela"
+                   "table" => "links"
                    );
+    
     $generator->generate($data);
 
-    $data = array (
+    /*$data = array (
                    "type" => "controller",
                    "table" => "controller"
                    );
@@ -146,17 +148,38 @@ $app->match('/generator', function () use ($app){
                    "type" => null,
                    "table" => "null"
                    );
-    $generator->generate($data);
-
-    // TODO. Meterlo en _generate_model()
-    /*mkdir("../generator/".$app_name."/"); 
-    $model = fopen("../generator/".$app_name."/".$db_name."_model.php", "w");
-
-    if(!$model) die("unable to create model file");
-
-  
-*/
+    $generator->generate($data);*/
 })
 ->method('GET');
 
+$app->match('/test/gozatzen_model', function () use ($app){
+    $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
+    if ($gozatzen_model->getById(array((string) 1))) {
+        echo "<p style='color:green'>gozatzen_model_getById SUCCESS</p>\n\n";
+    } else {
+        echo "<p style='color:red'>gozatzen_model_getById ERROR</p>";
+    }
+
+    $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
+    if ($gozatzen_model->getByUrl(array((string) "http://www.20minutos.es/noticia/1454100/0/"))) {
+        echo "<p style='color:green'>gozatzen_model_getByUrl SUCCESS</p>\n\n";
+    } else {
+        echo "<p style='color:red'>gozatzen_model_getByUrl ERROR</p>";
+    }
+
+    $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
+    if ($gozatzen_model->getByIp(array((string) "127.0.0.1"))) {
+        echo "<p style='color:green'>gozatzen_model_getByIp SUCCESS</p>\n\n";
+    } else {
+        echo "<p style='color:red'>gozatzen_model_getByIp ERROR</p>";
+    }
+
+    $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
+    if ($gozatzen_model->addLinks() == 1) {
+        echo "<p style='color:green'>gozatzen_model_Add SUCCESS</p>\n\n";
+    } else {
+        echo "<p style='color:red'>gozatzen_model_Add ERROR</p>";
+    }   
+})
+->method('GET');
 $app->run();
