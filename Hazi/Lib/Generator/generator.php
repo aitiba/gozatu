@@ -43,11 +43,11 @@ class generator extends Template\templateModel
    * @return mixed
    */
 
-   public function generate($type = null, $table = null)
+   public function generate($data = array())
    {
       // TODO: Si type o table null exception.
-      $this->type = $type;
-      $this->table = $table;
+      $this->type = $data["type"];
+      $this->table = $data["table"];
      if($this->_generate_schema()) {
         switch ($this->type) {
           case 'model':
@@ -117,11 +117,14 @@ class generator extends Template\templateModel
       echo "Type: ".$this->type."<br />";
       echo "Table: ".$this->table."<br />";
 
-   
+      $data = array (
+                    'app' => $this->app,
+                    'app_name' => $app_name,
+                    'table' => $this->table
+                   );
       //crea el fichero y le mete lo comun para todos los modelos
       //require("../generator/src/view/model_view.php");
-      $templateModel = new Template\templateModel($app_name, $this->table);
-    //  $templateModel->_create()
+      $templateModel = new Template\templateModel($data);
 
 echo "DATOS DE LA SESSION<br />";
    // print_r($app["session"]);

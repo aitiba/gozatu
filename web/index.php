@@ -124,13 +124,29 @@ $app->match('/generator', function () use ($app){
 
     }*/
     $generator = new Hazi\Lib\Generator\generator($app);
-    $generator->generate("model", "modela");
+    $data = array (
+                   "type" => "model",
+                   "table" => "modela"
+                   );
+    $generator->generate($data);
 
-    $generator->generate("controller", "controller");
+    $data = array (
+                   "type" => "controller",
+                   "table" => "controller"
+                   );
+    $generator->generate($data);
 
-    $generator->generate("view", "view");
+    $data = array (
+                   "type" => "view",
+                   "table" => "view"
+                   );
+    $generator->generate($data);
 
-    $generator->generate(null, "null");
+    $data = array (
+                   "type" => null,
+                   "table" => "null"
+                   );
+    $generator->generate($data);
 
     // TODO. Meterlo en _generate_model()
     /*mkdir("../generator/".$app_name."/"); 

@@ -8,17 +8,27 @@ namespace Hazi\Lib\Generator\Template;
 
 class templateModel extends template
 {
+  protected $app;
   protected $app_name;
   protected $table;
+  protected $model;
 
-  public function __construct($app_name, $table) {
-    $this->app_name = $app_name;
-    $this->table = $table;
+  public function __construct($data = array()) {
+    $this->app = $data["app"];
+    $this->app_name = $data["app_name"];
+    $this->table = $data["table"];
 
-    parent::_create();
-   // $this->_create();
-    $this->_fill();
-    //parent::_fill();
+    parent::__construct($data);
+
+    if ($this->_create()) { 
+      if($this->_fill()){
+
+      } else {
+        echo "ERROR al rellenar la plantilla";
+      }
+    } else {
+      echo "ERROR al crear el fichero";
+    }
   }
 
    /**
@@ -37,6 +47,12 @@ class templateModel extends template
       // TODO: Se queda vacio por ahora
     
       echo "TEMPLATEMODEL.CREATE<br />";
+
+      //mkdir("../generator/".$app_name."/"); 
+      $this->model = fopen(__DIR__."/../../../../generator/".$this->app_name."/".$this->table."_model.php", "w");
+      if(!$this->model) return false;
+
+      return true;
    }
 
   /**
@@ -60,14 +76,12 @@ class templateModel extends template
 
       echo "TEMPLATEMODEL.FILL<br />";
 
-      /*
-      $app_name = "gozatzen";
+      
 $variables = "";
 $functions = "";
-//mkdir("../generator/".$app_name."/"); 
 
-$model = fopen("../generator/".$app_name."/".$this->table."_model.php", "w");
-if(!$model) die("unable to create model file");
+
+
 
 foreach ($this->app['session']->get('schema') as $column) {
   $variables .= "    protected $".$column["Field"].";\n";
@@ -75,10 +89,10 @@ foreach ($this->app['session']->get('schema') as $column) {
 // var_dump($this->app);
 // var_dump($this->app['session']->get('schema'));
 
-$write = "<?php
-namespace ".ucfirst($app_name)."\Model
+$write = "<?php HOLANDO
+namespace ".ucfirst($this->app_name)."\Model
 
-class ".$app_name."_model
+class ".$this->app_name."_model
 {
     protected \$app;\n"
     .$variables."
@@ -95,7 +109,8 @@ class ".$app_name."_model
     }
 }";
 
-fwrite($model, $write); 
-*/
+if (!fwrite($this->model, $write)) return false;
+return true;
+
     }
 }

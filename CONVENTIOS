@@ -1,0 +1,10 @@
+- Cuando haya que pasar las de un argumento en una funcion o metodo se hara usando arrays para mantener una limpieza en el codigo.
+
+- Los nombres de las carpetas, de las clases y nombres de fichero empiezan por mayuscula y si tienen mas de una palabra todas empezaran por mayusculas
+
+Template
+TemplateModel
+
+- Los nombres de la tablas van en plural ingles vamos que terminan con una "s"
+
+La tabla para los links se llamara links
