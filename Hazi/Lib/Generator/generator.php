@@ -1,9 +1,9 @@
 <?php
 
-namespace Generator;
+namespace Hazi\Lib\Generator;
 
-//use Generator\templateModel;
-require_once ("../Generator/templateModel.php");
+//use Hazi\Lib\Generator;
+require_once ("../Hazi/Lib/Generator/templateModel.php");
 
 class generator extends templateModel
 {
@@ -119,7 +119,7 @@ class generator extends templateModel
    
       //crea el fichero y le mete lo comun para todos los modelos
       //require("../generator/src/view/model_view.php");
-      $templateModel = new templateModel($app_name, $this->table);
+      $templateModel = new \Hazi\Lib\Generator\templateModel($app_name, $this->table);
     //  $templateModel->_create()
 
 echo "DATOS DE LA SESSION<br />";

@@ -1,7 +1,7 @@
 <?php
 
-namespace Generator;
-//use Generator\Template;
+namespace Hazi\Lib\Generator;
+//use Hazi\Lib\Template;
 require_once ("template.php");
 
 class templateModel extends template

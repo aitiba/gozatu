@@ -9,8 +9,8 @@ ini_set('display_errors','On');
 // http://www.php.net/manual/es/function.spl-autoload-register.php
 spl_autoload_register(function () {
  //   echo 'AAAA'.$class_name;
-    require_once __DIR__."/../Generator/gozatzen/model/gozatzen_model.php";
-    require_once __DIR__."/../Generator/generator.php";
+    require_once __DIR__."/../Hazi/Lib/Generator/gozatzen/model/gozatzen_model.php";
+    require_once __DIR__."/../Hazi/Lib/Generator/generator.php";
     require_once __DIR__."/../vendor/autoload.php";
 });
 
@@ -122,7 +122,7 @@ $app->match('/generator', function () use ($app){
         var_dump($data);
 
     }*/
-    $generator = new Generator\generator($app);
+    $generator = new Hazi\Lib\Generator\generator($app);
     $generator->generate("model", "modela");
 
     $generator->generate("controller", "controller");
