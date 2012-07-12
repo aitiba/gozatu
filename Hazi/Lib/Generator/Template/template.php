@@ -1,6 +1,6 @@
 <?php
 
-namespace Hazi\Lib\Generator;
+namespace Hazi\Lib\Generator\Template;
 
 class template
 {

@@ -8,9 +8,10 @@ ini_set('display_errors','On');
 // Funcion de que se llama al hacer new del objeto __autoload()
 // http://www.php.net/manual/es/function.spl-autoload-register.php
 spl_autoload_register(function () {
- //   echo 'AAAA'.$class_name;
-    require_once __DIR__."/../Hazi/Lib/Generator/gozatzen/model/gozatzen_model.php";
+    //Hazi/Lib/Generator/gozatzen/model/gozatzen_model.php";
     require_once __DIR__."/../Hazi/Lib/Generator/generator.php";
+    require_once __DIR__."/../Hazi/Lib/Generator/Template/templateModel.php";
+    require_once __DIR__."/../Hazi/Lib/Generator/Template/template.php";
     require_once __DIR__."/../vendor/autoload.php";
 });
 
