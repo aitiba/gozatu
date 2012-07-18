@@ -117,6 +117,23 @@ foreach ($this->app['session']->get('schema') as $column) {
     */
  }
  $setgetters .= "    // FIN getters y setters";
+
+ /*
+  public function editLinks($id)
+            {
+              //$link = $this->getById($id);
+              $data = array (
+                    'url' => 'http://www.azkena111.com',
+                    'created' => date('Y-m-d H:i:s'),
+                    'ip' => '127.0.0.1'
+                );
+
+              if (!$this->app['db']->update('links', $data, $id)) 
+                return false;
+
+              return true;
+            }
+    */
  $crud .= "// Añadir ".$this->table."
             public function add".ucfirst($this->table)."()
             {
@@ -128,7 +145,29 @@ foreach ($this->app['session']->get('schema') as $column) {
             if (!\$this->app['db']->insert('links', \$data)) return false;
 
             return true;
-            }\n";
+            }\n\n";
+
+        $crud .= "public function edit".ucfirst($this->table)."(\$id)
+            {
+              \$data = array (
+                    'url' => 'http://www.azkena111.com',
+                    'created' => date('Y-m-d H:i:s'),
+                    'ip' => '127.0.0.1'
+                );
+
+              if (!\$this->app['db']->update('links', \$data, \$id)) 
+                return false;
+
+              return true;
+            }\n\n";
+
+        $crud .= "    public function delete".ucfirst($this->table)."(\$id)
+    {
+      if (!\$this->app['db']->delete('".$this->table."', \$id)) 
+        return false;
+
+      return true;
+    }\n";
 // var_dump($this->app);
 // var_dump($this->app['session']->get('schema'));
 

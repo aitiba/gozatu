@@ -88,13 +88,13 @@ public function getByIp($ip)
     }
 
 // Añadir links
-            public function addLinks()
+            public function addLinks($data)
             {
-              $data = array (
+             /* $data = array (
                     'url' => 'http://www.azkena.com',
                     'created' => date('Y-m-d H:i:s'),
                     'ip' => '127.0.0.1'
-                );
+                );*/
             if (!$this->app['db']->insert('links', $data)) return false;
 
             return true;

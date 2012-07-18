@@ -154,6 +154,7 @@ $app->match('/generator', function () use ($app){
 
 $app->match('/test/gozatzen_model', function () use ($app){
     $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
+    
     if ($gozatzen_model->getById(array((string) 1))) {
         echo "<p style='color:green'>gozatzen_model_getById SUCCESS</p>\n\n";
     } else {
@@ -179,6 +180,20 @@ $app->match('/test/gozatzen_model', function () use ($app){
         echo "<p style='color:green'>gozatzen_model_Add SUCCESS</p>\n\n";
     } else {
         echo "<p style='color:red'>gozatzen_model_Add ERROR</p>";
+    }  
+
+    $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
+    if ($gozatzen_model->editLinks(array("id" => 1)) == 1) {
+        echo "<p style='color:green'>gozatzen_model_Edit SUCCESS</p>\n\n";
+    } else {
+        echo "<p style='color:red'>gozatzen_model_Edit ERROR</p>";
+    } 
+
+    $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
+    if ($gozatzen_model->deleteLinks(array("id" => 1)) == 1) {
+        echo "<p style='color:green'>gozatzen_model_Delete SUCCESS</p>\n\n";
+    } else {
+        echo "<p style='color:red'>gozatzen_model_Delete ERROR</p>";
     }   
 })
 ->method('GET');

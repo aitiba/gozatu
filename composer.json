@@ -2,7 +2,11 @@
     "require": {
     	"silex/silex": "1.0.*",
         "doctrine/dbal": "2.2.*",
-        "twig/twig": ">=1.8,<2.0-dev"
+        "twig/twig": ">=1.8,<2.0-dev",
+        "behat/behat": "2.4@stable"
     },
-    "config": { "vendor-dir": "Hazi/Lib/Vendor" }
+    "config": { 
+    	"vendor-dir": "Hazi/Lib/Vendor",
+    	"bin-dir": "bin/"
+    }
 }
