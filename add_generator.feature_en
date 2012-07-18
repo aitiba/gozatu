@@ -1,0 +1,16 @@
+# language: es
+# features/add_generator.feature
+Feature: add_generator
+  In order to add new generator
+  As a anynomous user
+  I need to be able to add a new line to expecified table
+
+Scenario: Add new generator to database
+  Given the following generator list
+      | url               | created             | ip
+      | http://behat.com  | 2012-07-17 20:31:15 | 127.0.0.1
+      | http://behat1.com | 2012-07-17 20:31:16 | 127.0.0.1
+      | http://behat2.com | 2012-07-17 20:31:17 | 127.0.0.1
+      | http://behat3.com | 2012-07-17 20:31:18 | 127.0.0.1
+  Then generator list print "CORRECTO!"
+   
