@@ -85,7 +85,7 @@ $app->match('/gozatzen', function () use ($app){
 
 
     $gozatzen_model = new Gozatzen\Model\gozatzen_model($app);
-    $data= $gozatzen_model->getLinks();
+    $data = $gozatzen_model->getLinks();
     //$sql = "SELECT * FROM links";
     //$data = $app['db']->fetchAll($sql);
 
@@ -112,7 +112,6 @@ $app->match('/gozatzen', function () use ($app){
 
 $app->match('/generator', function () use ($app){
     
-   
     /*foreach ($app['session']->get('schema') as $schema) {
         $data = array(
             "field" => $schema["Field"],
@@ -124,6 +123,7 @@ $app->match('/generator', function () use ($app){
         var_dump($data);
 
     }*/
+
     $generator = new Hazi\Lib\Generator\generator($app);
     $data = array (
                    "type" => "model",
@@ -132,13 +132,13 @@ $app->match('/generator', function () use ($app){
     
     $generator->generate($data);
 
-    /*$data = array (
+    $data = array (
                    "type" => "controller",
-                   "table" => "controller"
+                   "table" => "links"
                    );
     $generator->generate($data);
 
-    $data = array (
+    /*$data = array (
                    "type" => "view",
                    "table" => "view"
                    );
@@ -197,4 +197,25 @@ $app->match('/test/gozatzen_model', function () use ($app){
     }   
 })
 ->method('GET');
+
+$app->match('/generator/add', function () use ($app){
+  echo 'add';
+})
+->method('GET|POST');
+
+$app->match('/generator/edit/{id}', function () use ($app){
+  echo $id;
+})
+->method('GET|POST');
+
+$app->match('/generator/delete', function () use ($app){
+  echo 'delete';
+})
+->method('POST');
+
+$app->match('/generator/list', function () use ($app){
+  echo 'list';
+})
+->method('GET');
+
 $app->run();

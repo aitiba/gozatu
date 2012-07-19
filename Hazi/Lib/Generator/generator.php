@@ -2,11 +2,11 @@
 
 namespace Hazi\Lib\Generator;
 
-//require_once ("../Hazi/Lib/Generator/Template/templateModel.php");
-
+require_once ("../Hazi/Lib/Generator/Template/templateModel.php");
+require_once ("../Hazi/Lib/Generator/Template/templateController.php");
 //use Hazi\Lib\Generator\Template;
 
-class generator extends Template\templateModel
+class generator
 {
    /* La app en si misma. Necesaria al basarse en silex. En 
     * $this->app['session']->get('schema')
@@ -147,9 +147,20 @@ echo "DATOS DE LA SESSION<br />";
    */
 
     private function _generate_controller() {
-      echo "controller<br /><br />";
+      $app_name = "gozatzen";
+
+      /*echo "controller<br /><br />";
       echo "Type: ".$this->type."<br />";
-      echo "Table: ".$this->table."<br />";
+      echo "Table: ".$this->table."<br />";*/
+
+      $data = array (
+                'app' => $this->app,
+                'app_name' => $app_name,
+                'table' => $this->table
+                );
+      //crea el fichero y le mete lo comun para todos los modelos
+      //require("../generator/src/view/model_view.php");
+      $templateModel = new Template\templateController($data);
     }
 
     /**
