@@ -198,24 +198,5 @@ $app->match('/test/gozatzen_model', function () use ($app){
 })
 ->method('GET');
 
-$app->match('/generator/add', function () use ($app){
-  echo 'add';
-})
-->method('GET|POST');
-
-$app->match('/generator/edit/{id}', function () use ($app){
-  echo $id;
-})
-->method('GET|POST');
-
-$app->match('/generator/delete', function () use ($app){
-  echo 'delete';
-})
-->method('POST');
-
-$app->match('/generator/list', function () use ($app){
-  echo 'list';
-})
-->method('GET');
 
 $app->run();

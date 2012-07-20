@@ -9,10 +9,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class templateController extends template
 {
+  /* La app en si misma. Necesaria al basarse en silex. En 
+    * $this->app['session']->get('schema')
+    *estan las columnas de la tabla elegida 
+  */
   protected $app;
+
+  /* Nombre de la aplicación */
   protected $app_name;
+
+  /* Tabla sobre la que se quieren generar cosas */
   protected $table;
-  protected $controller;
+
+  //protected $controller;
 
   public function __construct($data = array()) {
     $this->app = $data["app"];
@@ -48,23 +57,49 @@ class templateController extends template
     fclose($controller);
 
     $data = $read_file."\n";
-    $data .= "\n\$app->match('/generator/add', function () use (\$app){
-  echo 'add';
+    $data .= "\n\$app->match('/".$this->table."/add', function () use (\$app){
+   \$".$this->app_name."_model = 
+      new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
+
+   if (\$".$this->app_name."_model->add".ucfirst($this->table)."()) {
+      echo 'GUARDADO';
+   } else {
+      echo 'ERROR!';
+   }
 })
 ->method('GET|POST');
 
-\$app->match('/generator/edit/{id}', function () use (\$app){
-  echo \$id;
+\$app->match('/".$this->table."/edit/{id}', function (\$id) use (\$app){
+  \$".$this->app_name."_model = 
+      new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
+   if (\$".$this->app_name."_model->edit".ucfirst($this->table)."(array('id' => \$id))) {
+      echo 'EDITADO';
+   } else {
+      echo 'ERROR!';
+   }
 })
 ->method('GET|POST');
 
-\$app->match('/generator/delete', function () use (\$app){
-  echo 'delete';
+\$app->match('/".$this->table."/delete/{id}', function (\$id) use (\$app){
+  \$".$this->app_name."_model = 
+      new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
+   if (\$".$this->app_name."_model->delete".ucfirst($this->table)."(array('id' => \$id))) {
+     echo 'BORRADO';
+   } else {
+      echo 'ERROR!';
+   }
 })
-->method('POST');
+->method('GET|POST');
 
-\$app->match('/generator/list', function () use (\$app){
-  echo 'list';
+\$app->match('/".$this->table."/list', function () use (\$app){
+  \$".$this->app_name."_model = 
+      new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
+   if (\$data = \$".$this->app_name."_model->get".ucfirst($this->table)."()) {
+     echo 'LISTADO';
+     var_dump(\$data);
+   } else {
+      echo 'ERROR!';
+   }
 })
 ->method('GET');\n\n";
     $data .= "\$app->run();";
