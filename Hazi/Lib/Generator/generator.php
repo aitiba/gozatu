@@ -4,6 +4,7 @@ namespace Hazi\Lib\Generator;
 
 require_once ("../Hazi/Lib/Generator/Template/templateModel.php");
 require_once ("../Hazi/Lib/Generator/Template/templateController.php");
+require_once ("../Hazi/Lib/Generator/Template/templateView.php");
 //use Hazi\Lib\Generator\Template;
 
 class generator
@@ -160,6 +161,7 @@ echo "DATOS DE LA SESSION<br />";
                 );
       //crea el fichero y le mete lo comun para todos los modelos
       //require("../generator/src/view/model_view.php");
+
       $templateModel = new Template\templateController($data);
     }
 
@@ -175,8 +177,18 @@ echo "DATOS DE LA SESSION<br />";
    */
 
     private function _generate_view() {
-      echo "view<br /><br />";
+      $app_name = "gozatzen";
+
+      /*echo "view<br /><br />";
       echo "Type: ".$this->type."<br />";
-      echo "Table: ".$this->table."<br />";
+      echo "Table: ".$this->table."<br />";*/
+
+      $data = array (
+                'app' => $this->app,
+                'app_name' => $app_name,
+                'table' => $this->table
+                );
+      
+     $templateModel = new Template\templateView($data);
     }
 }

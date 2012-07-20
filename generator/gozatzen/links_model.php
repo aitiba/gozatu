@@ -91,9 +91,9 @@ public function getByIp($ip)
             public function addLinks()
             {
               $data = array (
-                    'url' => 'http://www.azkena.com',
+                    'url' => $_POST['url'],
                     'created' => date('Y-m-d H:i:s'),
-                    'ip' => '127.0.0.1'
+                    'ip' => $_POST['ip']
                 );
             if (!$this->app['db']->insert('links', $data)) return false;
 
