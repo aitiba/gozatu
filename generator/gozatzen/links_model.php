@@ -58,7 +58,7 @@ public function getById($id)
 
     {
 
-      $sql='SELECT * FROM links WHERE id =  id';
+      $sql='SELECT * FROM links WHERE id ='.$id;
       return $this->app['db']->fetchAll($sql);
 
     }
@@ -66,7 +66,7 @@ public function getByUrl($url)
 
     {
 
-      $sql='SELECT * FROM links WHERE url =  url';
+      $sql='SELECT * FROM links WHERE url ='.$url;
       return $this->app['db']->fetchAll($sql);
 
     }
@@ -74,7 +74,7 @@ public function getByCreated($created)
 
     {
 
-      $sql='SELECT * FROM links WHERE created =  created';
+      $sql='SELECT * FROM links WHERE created ='.$created;
       return $this->app['db']->fetchAll($sql);
 
     }
@@ -82,7 +82,7 @@ public function getByIp($ip)
 
     {
 
-      $sql='SELECT * FROM links WHERE ip =  ip';
+      $sql='SELECT * FROM links WHERE ip ='.$ip;
       return $this->app['db']->fetchAll($sql);
 
     }

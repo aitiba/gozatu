@@ -152,7 +152,44 @@ class templateView extends template
    }
 
    public function _createViewList() {
-    echo "list";
+    $file = __DIR__."/../../../../generator/".$this->app_name."/view/".$this->table."/list.php";
+   
+    $data = "  <html>
+        <head>
+            <title></title>
+        </head>
+        <body>";
+
+        $data .= "<table>
+                  <tr>
+                    <td><a href='add'>Nuevo ".$this->table."</a></td>
+                  </tr>
+                  <tr>";
+
+        foreach ($this->app['session']->get('schema') as $column) {
+          $data .= "<td>".ucfirst($column["Field"])."</td>";
+        }
+        $data .= "<td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  </tr>
+                  <?php foreach (\$data as \$d) { ?>
+                    <tr>";
+        foreach ($this->app['session']->get('schema') as $column) {
+       //      if ($column["Field"] != 'id' AND $column["Field"] != 'created') {
+            $data .= "<td><?php echo \$d['".$column["Field"]."'] ?></td>";
+           }
+        //}
+      $data .= "<td><a href='edit\<?php echo \$d['id'] ?>'>Editar</a></td>
+                <td><a href='delete\<?php echo \$d['id'] ?>'>Borrar</a></td>
+                </tr>
+                <?php } ?>
+              </table>";
+         
+    $view = fopen($file, 'w') or die("can't open file");
+    fwrite($view, $data);
+
+    fclose($view);
+
     return true;
    }
 }

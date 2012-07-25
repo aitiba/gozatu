@@ -109,8 +109,7 @@ var_dump(\$_POST);
   \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
    if (\$data = \$".$this->app_name."_model->get".ucfirst($this->table)."()) {
-     echo 'LISTADO';
-     var_dump(\$data);
+     require_once __DIR__.'/../generator/gozatzen/view/links/list.php';
    } else {
       echo 'ERROR!';
    }

@@ -97,7 +97,7 @@ foreach ($this->app['session']->get('schema') as $column) {
     $getBy .= "public function getBy".ucfirst($column['Field'])
     ."($".$column['Field'].")\n
     {\n
-      \$sql='SELECT * FROM ".$this->table." WHERE ".$column['Field']." =  ".$column['Field']."';
+      \$sql='SELECT * FROM ".$this->table." WHERE ".$column['Field']." ='.$".$column['Field'].";
       return \$this->app['db']->fetchAll(\$sql);\n
     }\n";
 
