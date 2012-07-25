@@ -1,5 +1,5 @@
 {
-    "hash": "ecf28b8aad099c6be66b3ac65193194d",
+    "hash": "77174b21f4423d28c6cdc21c69c978be",
     "packages": [
         {
             "package": "behat/behat",
@@ -22,8 +22,8 @@
         {
             "package": "behat/mink-extension",
             "version": "dev-master",
-            "source-reference": "2fc55fdd358b121b5439acc76be6fa654ebe2e28",
-            "commit-date": "1341477571"
+            "source-reference": "da58c1b572349310ce5b65066a4d8b7e487a63a7",
+            "commit-date": "1342818063"
         },
         {
             "package": "behat/mink-goutte-driver",
@@ -38,6 +38,18 @@
             "commit-date": "1341477123"
         },
         {
+            "package": "cilex/cilex",
+            "version": "dev-master",
+            "alias-pretty-version": "1.0.x-dev",
+            "alias-version": "1.0.9999999.9999999-dev"
+        },
+        {
+            "package": "cilex/cilex",
+            "version": "dev-master",
+            "source-reference": "b99c0eeeecdd535d87e266beb091fa9fc6f0e449",
+            "commit-date": "1342709017"
+        },
+        {
             "package": "doctrine/common",
             "version": "2.2.2"
         },
@@ -46,12 +58,6 @@
             "version": "2.2.x-dev",
             "source-reference": "b961a3fce6bf220f1dca47d7d747b9074bea4730",
             "commit-date": "1341779435"
-        },
-        {
-            "package": "fabpot/goutte",
-            "version": "dev-master",
-            "alias-pretty-version": "1.0.x-dev",
-            "alias-version": "1.0.9999999.9999999-dev"
         },
         {
             "package": "fabpot/goutte",
@@ -68,6 +74,12 @@
             "version": "dev-master",
             "source-reference": "v1.0",
             "commit-date": "1337727558"
+        },
+        {
+            "package": "php-cli/php-cli",
+            "version": "dev-master",
+            "source-reference": "0bee4db792c10bf6f59c0c2159476f0cf5a55f09",
+            "commit-date": "1341347060"
         },
         {
             "package": "pimple/pimple",
@@ -90,8 +102,8 @@
         {
             "package": "silex/silex",
             "version": "dev-master",
-            "source-reference": "81bafcc6ae67db7aa3be49db382287efe02dfbd4",
-            "commit-date": "1342601028"
+            "source-reference": "4bd46b806583e4f6467bba3696dbdf953431c630",
+            "commit-date": "1342760935"
         },
         {
             "package": "symfony/browser-kit",
@@ -101,6 +113,18 @@
         },
         {
             "package": "symfony/browser-kit",
+            "version": "dev-master",
+            "source-reference": "v2.1.0-BETA3",
+            "commit-date": "1342347231"
+        },
+        {
+            "package": "symfony/class-loader",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/class-loader",
             "version": "dev-master",
             "source-reference": "v2.1.0-BETA3",
             "commit-date": "1342347231"
@@ -174,8 +198,8 @@
         {
             "package": "symfony/event-dispatcher",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA3",
-            "commit-date": "1342347231"
+            "source-reference": "451e0befb42a5552d4e143edcb74e3b4a9733bea",
+            "commit-date": "1342739894"
         },
         {
             "package": "symfony/finder",
@@ -198,8 +222,8 @@
         {
             "package": "symfony/http-foundation",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA3",
-            "commit-date": "1342347231"
+            "source-reference": "06d1636d4ef409cefdf5f987573d76898916c0c8",
+            "commit-date": "1342762453"
         },
         {
             "package": "symfony/http-kernel",
@@ -222,8 +246,8 @@
         {
             "package": "symfony/process",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA3",
-            "commit-date": "1342347231"
+            "source-reference": "ae0635cf7768aeab3c7935389e651498706b87ac",
+            "commit-date": "1342632812"
         },
         {
             "package": "symfony/routing",
@@ -234,8 +258,8 @@
         {
             "package": "symfony/routing",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA3",
-            "commit-date": "1342347231"
+            "source-reference": "3630f2d08515bbad980c0d654433b6689cf460a2",
+            "commit-date": "1342708743"
         },
         {
             "package": "symfony/translation",
@@ -270,8 +294,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "b9ce6063824c15376b781327d3bb432ed5f81b16",
-            "commit-date": "1342645648"
+            "source-reference": "8a84838798e45424c5fe2d87149db6855ae037bf",
+            "commit-date": "1342788098"
         }
     ],
     "packages-dev": null,
@@ -280,6 +304,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "cilex/cilex": 20,
+        "php-cli/php-cli": 20,
         "behat/behat": 0,
         "behat/mink": 0
     }

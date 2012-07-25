@@ -30,6 +30,8 @@ class templateView extends template
 
     parent::__construct($data);
 
+    echo $this->_createViews();
+
     if ($res=$this->_createViews()) { 
     echo "HOLA";
     } else {
@@ -63,7 +65,7 @@ class templateView extends template
 
    if (!$this->_createViewAdd()) return 'add';
    elseif (!$this->_createViewEdit()) return 'edit';
-   elseif (!$this->_createViewDelete()) return 'delete';
+  // elseif (!$this->_createViewDelete()) return 'delete';
    elseif (!$this->_createViewList()) return 'list';
 }
 
@@ -110,11 +112,43 @@ class templateView extends template
    }
 
    public function _createViewEdit() {
-    echo "edit";
-    return true;
-   }
-   public function _createViewDelete() {
-    echo "delete";
+     $file = __DIR__."/../../../../generator/".$this->app_name."/view/".$this->table."/edit.php";
+   
+    $data = "  <html>
+        <head>
+            <title></title>
+        </head>
+        <body>";
+        // $data = $head;
+            
+         foreach ($this->app['session']->get('schema') as $column) {
+      //    echo "pasa";  var_dump($column["Field"]);
+            if ($column["Field"] != 'id' AND $column["Field"] != 'created') {
+               $type = explode("(", $column["Type"]);
+    //var_dump($type);
+                  switch ($type[0]) {
+                      case 'int':
+                      case 'varchar':
+                      case 'datetime':
+                        $type_column = "string";
+                        break;
+                }
+                $data .= "<form action='#' method='post'> 
+                ".ucfirst($column["Field"]).": <input type='".$type_column."' name='".$column["Field"]."'> 
+               ";
+            }
+//var_dump($column);
+         }
+        $data .= " <input type='submit' value='Aceptar' name='buttom' /></form>";
+
+        $data .= "
+        </body>
+        </html>";
+    $view = fopen($file, 'w') or die("can't open file");
+    fwrite($view, $data);
+
+    fclose($view);
+
     return true;
    }
 

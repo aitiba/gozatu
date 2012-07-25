@@ -138,12 +138,12 @@ $app->match('/generator', function () use ($app){
                    );
     $generator->generate($data);
 
-    /*$data = array (
+    $data = array (
                    "type" => "view",
-                   "table" => "view"
+                   "table" => "links"
                    );
     $generator->generate($data);
-
+    /*
     $data = array (
                    "type" => null,
                    "table" => "null"
@@ -198,5 +198,114 @@ $app->match('/test/gozatzen_model', function () use ($app){
 })
 ->method('GET');
 
+
+$app->match('/links/add', function () use ($app){
+  
+
+   
+     $data = null;
+   $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+var_dump($_POST);
+      if ($_POST){
+       if ($gozatzen_model->addLinks()) {
+          echo 'GUARDADO';
+       } else {
+          echo 'ERROR!';
+       }
+      } else {
+        require_once __DIR__.'/../generator/gozatzen/view/links/add.php';
+      }
+})
+->method('GET|POST');
+
+$app->match('/links/edit/{id}', function ($id) use ($app){
+  $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+   if ($gozatzen_model->editLinks(array('id' => $id))) {
+      echo 'EDITADO';
+   } else {
+      echo 'ERROR!';
+   }
+})
+->method('GET|POST');
+
+$app->match('/links/delete/{id}', function ($id) use ($app){
+  $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+   if ($gozatzen_model->deleteLinks(array('id' => $id))) {
+     echo 'BORRADO';
+   } else {
+      echo 'ERROR!';
+   }
+})
+->method('GET|POST');
+
+$app->match('/links/list', function () use ($app){
+  $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+   if ($data = $gozatzen_model->getLinks()) {
+     echo 'LISTADO';
+     var_dump($data);
+   } else {
+      echo 'ERROR!';
+   }
+})
+->method('GET');
+
+
+$app->match('/links/add', function () use ($app){
+  
+
+   
+     $data = null;
+   $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+var_dump($_POST);
+      if ($_POST){
+       if ($gozatzen_model->addLinks()) {
+          echo 'GUARDADO';
+       } else {
+          echo 'ERROR!';
+       }
+      } else {
+        require_once __DIR__.'/../generator/gozatzen/view/links/add.php';
+      }
+})
+->method('GET|POST');
+
+$app->match('/links/edit/{id}', function ($id) use ($app){
+  $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+   if ($gozatzen_model->editLinks(array('id' => $id))) {
+      echo 'EDITADO';
+   } else {
+      echo 'ERROR!';
+   }
+})
+->method('GET|POST');
+
+$app->match('/links/delete/{id}', function ($id) use ($app){
+  $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+   if ($gozatzen_model->deleteLinks(array('id' => $id))) {
+     echo 'BORRADO';
+   } else {
+      echo 'ERROR!';
+   }
+})
+->method('GET|POST');
+
+$app->match('/links/list', function () use ($app){
+  $gozatzen_model = 
+      new Gozatzen\Model\ gozatzen_model($app);
+   if ($data = $gozatzen_model->getLinks()) {
+     echo 'LISTADO';
+     var_dump($data);
+   } else {
+      echo 'ERROR!';
+   }
+})
+->method('GET');
 
 $app->run();

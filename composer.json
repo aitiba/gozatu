@@ -3,6 +3,8 @@
     	"silex/silex": "1.0.*",
         "doctrine/dbal": "2.2.*",
         "twig/twig": ">=1.8,<2.0-dev",
+        "cilex/cilex": "1.0.x-dev",
+        "php-cli/php-cli": "dev-master",
         "behat/behat": "2.4@stable",
         "behat/mink": "1.4.*@stable",
         "behat/mink-extension": "*",
@@ -13,5 +15,10 @@
     "config": { 
     	"vendor-dir": "Hazi/Lib/Vendor",
     	"bin-dir": "bin/"
+    },
+     "autoload" : {
+        "psr-0" : {
+            "Matthias" : "src"
+        }
     }
 }

@@ -58,14 +58,22 @@ class templateController extends template
 
     $data = $read_file."\n";
     $data .= "\n\$app->match('/".$this->table."/add', function () use (\$app){
+  
+
+   
+     \$data = null;
    \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
-
-   if (\$".$this->app_name."_model->add".ucfirst($this->table)."()) {
-      echo 'GUARDADO';
-   } else {
-      echo 'ERROR!';
-   }
+var_dump(\$_POST);
+      if (\$_POST){
+       if (\$".$this->app_name."_model->add".ucfirst($this->table)."()) {
+          echo 'GUARDADO';
+       } else {
+          echo 'ERROR!';
+       }
+      } else {
+        require_once __DIR__.'/../generator/gozatzen/view/links/add.php';
+      }
 })
 ->method('GET|POST');
 
