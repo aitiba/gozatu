@@ -79,7 +79,7 @@ class templateView extends template
         </head>
         <body>";
         // $data = $head;
-            
+           $data .= "<form action='#' method='post'>\n";
          foreach ($this->app['session']->get('schema') as $column) {
       //    echo "pasa";  var_dump($column["Field"]);
             if ($column["Field"] != 'id' AND $column["Field"] != 'created') {
@@ -92,8 +92,7 @@ class templateView extends template
                         $type_column = "string";
                         break;
                 }
-                $data .= "<form action='#' method='post'> 
-                ".ucfirst($column["Field"]).": <input type='".$type_column."' name='".$column["Field"]."'> 
+                $data .= ucfirst($column["Field"]).": <input type='".$type_column."' name='".$column["Field"]."'>
                ";
             }
 //var_dump($column);
@@ -112,7 +111,7 @@ class templateView extends template
    }
 
    public function _createViewEdit() {
-     $file = __DIR__."/../../../../generator/".$this->app_name."/view/".$this->table."/edit.php";
+      $file = __DIR__."/../../../../generator/".$this->app_name."/view/".$this->table."/edit.php";
    
     $data = "  <html>
         <head>
@@ -120,7 +119,7 @@ class templateView extends template
         </head>
         <body>";
         // $data = $head;
-            
+           $data .= "<form action='#' method='post'>\n";
          foreach ($this->app['session']->get('schema') as $column) {
       //    echo "pasa";  var_dump($column["Field"]);
             if ($column["Field"] != 'id' AND $column["Field"] != 'created') {
@@ -133,13 +132,13 @@ class templateView extends template
                         $type_column = "string";
                         break;
                 }
-                $data .= "<form action='#' method='post'> 
-                ".ucfirst($column["Field"]).": <input type='".$type_column."' name='".$column["Field"]."'> 
+                $data .= ucfirst($column["Field"]).": <input type='".$type_column."' name='".$column["Field"]."' value=<?php echo \$data[0]['".$column["Field"]."'] ?>>
                ";
             }
 //var_dump($column);
          }
-        $data .= " <input type='submit' value='Aceptar' name='buttom' /></form>";
+        $data .= " <input type='hidden' value=<?php echo \$id ?> />
+        <input type='submit' value='Aceptar' name='buttom' /></form>";
 
         $data .= "
         </body>

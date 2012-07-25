@@ -78,13 +78,19 @@ var_dump(\$_POST);
 ->method('GET|POST');
 
 \$app->match('/".$this->table."/edit/{id}', function (\$id) use (\$app){
-  \$".$this->app_name."_model = 
+   \$data = null;
+   \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
-   if (\$".$this->app_name."_model->edit".ucfirst($this->table)."(array('id' => \$id))) {
-      echo 'EDITADO';
-   } else {
-      echo 'ERROR!';
-   }
+     if (\$_POST){
+       if (\$".$this->app_name."_model->edit".ucfirst($this->table)."(\$id)) {
+          echo 'GUARDADO';
+       } else {
+          echo 'ERROR!';
+       }
+      } else {
+        \$data = \$gozatzen_model->getById(\$id);
+        require_once __DIR__.'/../generator/gozatzen/view/links/edit.php';
+      }
 })
 ->method('GET|POST');
 

@@ -97,9 +97,8 @@ foreach ($this->app['session']->get('schema') as $column) {
     $getBy .= "public function getBy".ucfirst($column['Field'])
     ."($".$column['Field'].")\n
     {\n
-      \$sql='SELECT * FROM ".$this->table." WHERE ".$column['Field']." = ?';
-      return \$this->app['db']->fetchAll(\$sql, $"
-      .$column['Field'].");\n
+      \$sql='SELECT * FROM ".$this->table." WHERE ".$column['Field']." =  ".$column['Field']."';
+      return \$this->app['db']->fetchAll(\$sql);\n
     }\n";
 
     /* public function addLinks()
@@ -149,10 +148,11 @@ foreach ($this->app['session']->get('schema') as $column) {
 
         $crud .= "public function edit".ucfirst($this->table)."(\$id)
             {
+              \$id = array('id' => \$id);
               \$data = array (
-                    'url' => 'http://www.azkena111.com',
+                    'url' => \$_POST['url'],
                     'created' => date('Y-m-d H:i:s'),
-                    'ip' => '127.0.0.1'
+                    'ip' => \$_POST['ip']
                 );
 
               if (!\$this->app['db']->update('links', \$data, \$id)) 
