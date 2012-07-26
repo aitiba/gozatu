@@ -162,7 +162,7 @@ class templateView extends template
 
         $data .= "<table>
                   <tr>
-                    <td><a href='add'>Nuevo ".$this->table."</a></td>
+                    <td><a href='../  add'>Nuevo ".$this->table."</a></td>
                   </tr>
                   <tr>";
 
@@ -179,10 +179,18 @@ class templateView extends template
             $data .= "<td><?php echo \$d['".$column["Field"]."'] ?></td>";
            }
         //}
-      $data .= "<td><a href='edit\<?php echo \$d['id'] ?>'>Editar</a></td>
-                <td><a href='delete\<?php echo \$d['id'] ?>'>Borrar</a></td>
+      $data .= "<td><a href='..\edit\<?php echo \$d['id'] ?>'>Editar</a></td>
+                <td><a href='..\delete\<?php echo \$d['id'] ?>'>Borrar</a></td>
                 </tr>
                 <?php } ?>
+                <tr>
+                  <td>
+                  <?php for (\$i=0; \$i < \$paginator['paginator']; \$i++) { ?>
+       
+                              <a href='<?php echo \$i + 1 * \$cuantos?>' style='float:left'><?php echo \$i ?></a>
+                  <?php } ?>
+                </td>
+                </tr>
               </table>";
          
     $view = fopen($file, 'w') or die("can't open file");

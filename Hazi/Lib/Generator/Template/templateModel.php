@@ -81,6 +81,7 @@ $variables = "";
 $setgetters = "";
 $getBy = "";
 $crud = "";
+$paginator = "";
 $setgetters = "    // getters y setters\n";
 
 foreach ($this->app['session']->get('schema') as $column) {
@@ -168,8 +169,21 @@ foreach ($this->app['session']->get('schema') as $column) {
 
       return true;
     }\n";
-// var_dump($this->app);
-// var_dump($this->app['session']->get('schema'));
+
+    $paginator = "\n
+    /* PAGINATOR */
+    public function count".ucfirst($this->table)."()
+    {
+        \$sql = 'SELECT count(*) as howMany FROM ".$this->table."';
+        \$data = \$this->app['db']->fetchAll(\$sql);
+        
+        return \$data;
+    }
+    public function paginator".ucfirst($this->table)."(\$desde = 0, \$cuantos = 10)
+    {
+        \$sql = 'SELECT * FROM ".$this->table." ORDER BY id DESC LIMIT '.\$desde.' , '.\$cuantos;
+        return \$this->app['db']->fetchAll(\$sql);
+    }";
 
 $write = "<?php 
 namespace ".ucfirst($this->app_name)."\Model;
@@ -191,7 +205,8 @@ class ".$this->app_name."_model
     {
         \$sql = 'SELECT * FROM ".$this->table."';
         return \$this->app['db']->fetchAll(\$sql);
-    }
+    }"
+    .$paginator."
 }";
 
 if (!fwrite($this->model, $write)) return false;

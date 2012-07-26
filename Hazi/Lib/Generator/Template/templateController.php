@@ -102,10 +102,16 @@ var_dump(\$_POST);
 })
 ->method('GET|POST');
 
-\$app->match('/".$this->table."/list', function () use (\$app){
+
+\$app->match('/".$this->table."/list/{desde}', function (\$desde) use (\$app){
+   \$cuantos = 10;
   \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
    if (\$data = \$".$this->app_name."_model->get".ucfirst($this->table)."()) {
+     
+     \$data = \$".$this->app_name."_model->paginator".ucfirst($this->table)."(\$desde, \$cuantos);
+    \$paginator['total'] = \$".$this->app_name."_model->count".ucfirst($this->table)."();
+    \$paginator['paginator'] = round(\$paginator['total'][0]['howMany'] / \$cuantos);
      require_once __DIR__.'/../generator/gozatzen/view/links/list.php';
    } else {
       echo 'ERROR!';

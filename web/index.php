@@ -202,6 +202,7 @@ $app->match('/test/gozatzen_model', function () use ($app){
 ->method('GET');
 
 
+
 $app->match('/links/add', function () use ($app){
      $data = null;
    $gozatzen_model = 
@@ -247,10 +248,16 @@ $app->match('/links/delete/{id}', function ($id) use ($app){
 })
 ->method('GET|POST');
 
-$app->match('/links/list', function () use ($app){
+
+$app->match('/links/list/{desde}', function ($desde = 0) use ($app){
+   $cuantos = 10;
   $gozatzen_model = 
       new Gozatzen\Model\ gozatzen_model($app);
    if ($data = $gozatzen_model->getLinks()) {
+     
+     $data = $gozatzen_model->paginatorLinks($desde, $cuantos);
+    $paginator['total'] = $gozatzen_model->countLinks();
+    $paginator['paginator'] = round($paginator['total'][0]['howMany'] / $cuantos);
      require_once __DIR__.'/../generator/gozatzen/view/links/list.php';
    } else {
       echo 'ERROR!';

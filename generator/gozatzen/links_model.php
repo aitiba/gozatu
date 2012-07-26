@@ -129,4 +129,18 @@ public function editLinks($id)
         $sql = 'SELECT * FROM links';
         return $this->app['db']->fetchAll($sql);
     }
+
+    /* PAGINATOR */
+    public function countLinks()
+    {
+        $sql = 'SELECT count(*) as howMany FROM links';
+        $data = $this->app['db']->fetchAll($sql);
+        
+        return $data;
+    }
+    public function paginatorLinks($desde = 0, $cuantos = 10)
+    {
+        $sql = 'SELECT * FROM links ORDER BY id DESC LIMIT '.$desde.' , '.$cuantos;
+        return $this->app['db']->fetchAll($sql);
+    }
 }
