@@ -78,36 +78,14 @@ class templateController extends template
 
    public function _openController()
    {
-    $add = $edit = $delete = $list = false;
-  // $actionsToOpen = array("add", "edit", "delete", "list");
     $file = __DIR__."/../../../../web/index.php";
     $controller = fopen($file, 'r') or die("can't open file");
     $read_file = fread($controller, filesize($file));
     $read_file = substr($read_file, 0, -13);
-
-    /* To know if the action is setted. If not setted, is copied.If is setted, isnt copied */
-    
-    if (!strpos($read_file, $this->table."/add")) {
-         $add = true;
-    }
-
-    if (!strpos($read_file, $this->table."/edit")) {
-         $edit = true;
-    }
-
-    if (!strpos($read_file, $this->table."/delete")) {
-         $delete = true;
-    }
-
-    if (!strpos($read_file, $this->table."/edit")) {
-         $list = true;
-    }
-    //}
     fclose($controller);
 
-    $data = $read_file."\n";
-
-    if($add) {
+    $data = $read_file."\n
+    //CRUD ".$this->table."\n";
     $data .= "\n\$app->match('/".$this->table."/add', function () use (\$app){
      \$data = null;
    \$".$this->app_name."_model = 
@@ -123,11 +101,9 @@ var_dump(\$_POST);
         require_once __DIR__.'/../generator/gozatzen/view/links/add.php';
       }
 })
-->method('GET|POST');";
-  }
+->method('GET|POST');
 
- if($edit) {
-$data .= "\$app->match('/".$this->table."/edit/{id}', function (\$id) use (\$app){
+\$app->match('/".$this->table."/edit/{id}', function (\$id) use (\$app){
    \$data = null;
    \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
@@ -142,11 +118,9 @@ $data .= "\$app->match('/".$this->table."/edit/{id}', function (\$id) use (\$app
         require_once __DIR__.'/../generator/gozatzen/view/links/edit.php';
       }
 })
-->method('GET|POST');";
-}
+->method('GET|POST');
 
- if($delete) {
-$data .= "\$app->match('/".$this->table."/delete/{id}', function (\$id) use (\$app){
+\$app->match('/".$this->table."/delete/{id}', function (\$id) use (\$app){
   \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
    if (\$".$this->app_name."_model->delete".ucfirst($this->table)."(array('id' => \$id))) {
@@ -155,11 +129,10 @@ $data .= "\$app->match('/".$this->table."/delete/{id}', function (\$id) use (\$a
       echo 'ERROR!';
    }
 })
-->method('GET|POST');";
-}
+->method('GET|POST');
 
- if($list) {
-$data .= "\$app->match('/".$this->table."/list/{desde}', function (\$desde) use (\$app){
+
+\$app->match('/".$this->table."/list/{desde}', function (\$desde) use (\$app){
    \$cuantos = 10;
   \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
@@ -174,7 +147,6 @@ $data .= "\$app->match('/".$this->table."/list/{desde}', function (\$desde) use 
    }
 })
 ->method('GET');\n\n";
-}
     $data .= "\$app->run();";
     $controller = fopen($file, 'w') or die("can't open file");
     fwrite($controller, $data);

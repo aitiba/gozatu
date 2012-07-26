@@ -154,24 +154,40 @@ class templateView extends template
    public function _createViewList() {
     $file = __DIR__."/../../../../generator/".$this->app_name."/view/".$this->table."/list.php";
    
-    $data = "  <html>
-        <head>
+    $data = "<!DOCTYPE HTML>
+  <html lang='en-US'>
+  <head>
+     <meta charset='UTF-8'>
             <title></title>
+             <script src='http://code.jquery.com/jquery-latest.js'></script>
+             <script src='../../../../web/js/jquery.tablesorter.js'></script>
+              <script>
+                \$(document).ready(function() { 
+                    \$('.tablesorter').tablesorter({sortList:[[1,1],[2,1],[3,1],[4,1]]});
+          
+                });
+                
+              </script>
+
+              <link rel='stylesheet' href='../../../../web/css/tables.css' type='text/css' media='print, projection, screen' />
+
         </head>
         <body>";
 
-        $data .= "<table>
-                  <tr>
-                    <td><a href='../  add'>Nuevo ".$this->table."</a></td>
-                  </tr>
-                  <tr>";
+        $data .= " <p>
+          <a href='..\add'>Nuevo ".$this->table."</a>
+        </p> 
+        <table cellspacing='1' class='tablesorter' border='0'>
+          <thead>
+            <tr>";
 
         foreach ($this->app['session']->get('schema') as $column) {
-          $data .= "<td>".ucfirst($column["Field"])."</td>";
+          $data .= " <th class='header headerSortUp'>".ucfirst($column["Field"])."</th>";
         }
-        $data .= "<td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  </tr>
+        $data .= "<td colspan='2'></td>
+                    </tr>
+      </thead>
+      <tbody>
                   <?php foreach (\$data as \$d) { ?>
                     <tr>";
         foreach ($this->app['session']->get('schema') as $column) {
@@ -179,19 +195,19 @@ class templateView extends template
             $data .= "<td><?php echo \$d['".$column["Field"]."'] ?></td>";
            }
         //}
-      $data .= "<td><a href='..\edit\<?php echo \$d['id'] ?>'>Editar</a></td>
-                <td><a href='..\delete\<?php echo \$d['id'] ?>'>Borrar</a></td>
+      $data .= "<td><a href='edit\<?php echo \$d['id'] ?>'>Editar</a></td>
+                <td><a href='delete\<?php echo \$d['id'] ?>'>Borrar</a></td>
                 </tr>
                 <?php } ?>
-                <tr>
-                  <td>
-                  <?php for (\$i=0; \$i < \$paginator['paginator']; \$i++) { ?>
-       
-                              <a href='<?php echo \$i + 1 * \$cuantos?>' style='float:left'><?php echo \$i ?></a>
-                  <?php } ?>
-                </td>
-                </tr>
-              </table>";
+                </tbody>
+              </table>
+               <p>
+                    <?php for (\$i=0; \$i < \$paginator['paginator']; \$i++) { ?>
+         
+                                <a href='<?php echo (\$i + 1) * \$cuantos?>' style='float:left'><?php echo \$i ?></a>
+                    <?php } ?>
+          
+                  </p>";
          
     $view = fopen($file, 'w') or die("can't open file");
     fwrite($view, $data);
