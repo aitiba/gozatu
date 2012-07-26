@@ -58,9 +58,6 @@ class templateController extends template
 
     $data = $read_file."\n";
     $data .= "\n\$app->match('/".$this->table."/add', function () use (\$app){
-  
-
-   
      \$data = null;
    \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);

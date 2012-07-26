@@ -24,6 +24,10 @@ class generator
 
    protected $table;
 
+   /* Nombre de la aplicación */
+
+   protected $app_name;
+
    public function __construct($app)
    {
        $this->app = $app;
@@ -49,6 +53,7 @@ class generator
       // TODO: Si type o table null exception.
       $this->type = $data["type"];
       $this->table = $data["table"];
+      $this->app_name = $data["app_name"];
      if($this->_generate_schema()) {
         switch ($this->type) {
           case 'model':
@@ -111,7 +116,7 @@ class generator
    */
 
     private function _generate_model() {
-      $app_name = "gozatzen";
+      //$app_name = "gozatzen";
       
       echo "MODEL<br />";
      // echo "App: ";var_dump($this->app);echo "<br />";
@@ -120,7 +125,7 @@ class generator
 
       $data = array (
                     'app' => $this->app,
-                    'app_name' => $app_name,
+                    'app_name' => $this->app_name,
                     'table' => $this->table
                    );
       //crea el fichero y le mete lo comun para todos los modelos
@@ -148,7 +153,7 @@ echo "DATOS DE LA SESSION<br />";
    */
 
     private function _generate_controller() {
-      $app_name = "gozatzen";
+      //$app_name = "gozatzen";
 
       /*echo "controller<br /><br />";
       echo "Type: ".$this->type."<br />";
@@ -156,7 +161,7 @@ echo "DATOS DE LA SESSION<br />";
 
       $data = array (
                 'app' => $this->app,
-                'app_name' => $app_name,
+                'app_name' => $this->app_name,
                 'table' => $this->table
                 );
       //crea el fichero y le mete lo comun para todos los modelos
@@ -177,7 +182,7 @@ echo "DATOS DE LA SESSION<br />";
    */
 
     private function _generate_view() {
-      $app_name = "gozatzen";
+     // $app_name = "gozatzen";
 
       /*echo "view<br /><br />";
       echo "Type: ".$this->type."<br />";
@@ -185,7 +190,7 @@ echo "DATOS DE LA SESSION<br />";
 
       $data = array (
                 'app' => $this->app,
-                'app_name' => $app_name,
+                'app_name' => $this->app_name,
                 'table' => $this->table
                 );
       
