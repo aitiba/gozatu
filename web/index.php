@@ -146,7 +146,7 @@ $app->match('/generator', function () use ($app){
                    "app_name" => "gozatzen"
                    );
     $generator->generate($data);
-    /*
+ /*
     $data = array (
                    "type" => null,
                    "table" => "null"
@@ -202,7 +202,6 @@ $app->match('/test/gozatzen_model', function () use ($app){
 ->method('GET');
 
 
-
 $app->match('/links/add', function () use ($app){
      $data = null;
    $gozatzen_model = 
@@ -218,9 +217,7 @@ var_dump($_POST);
         require_once __DIR__.'/../generator/gozatzen/view/links/add.php';
       }
 })
-->method('GET|POST');
-
-$app->match('/links/edit/{id}', function ($id) use ($app){
+->method('GET|POST');$app->match('/links/edit/{id}', function ($id) use ($app){
    $data = null;
    $gozatzen_model = 
       new Gozatzen\Model\ gozatzen_model($app);
@@ -235,9 +232,7 @@ $app->match('/links/edit/{id}', function ($id) use ($app){
         require_once __DIR__.'/../generator/gozatzen/view/links/edit.php';
       }
 })
-->method('GET|POST');
-
-$app->match('/links/delete/{id}', function ($id) use ($app){
+->method('GET|POST');$app->match('/links/delete/{id}', function ($id) use ($app){
   $gozatzen_model = 
       new Gozatzen\Model\ gozatzen_model($app);
    if ($gozatzen_model->deleteLinks(array('id' => $id))) {
@@ -246,10 +241,7 @@ $app->match('/links/delete/{id}', function ($id) use ($app){
       echo 'ERROR!';
    }
 })
-->method('GET|POST');
-
-
-$app->match('/links/list/{desde}', function ($desde = 0) use ($app){
+->method('GET|POST');$app->match('/links/list/{desde}', function ($desde) use ($app){
    $cuantos = 10;
   $gozatzen_model = 
       new Gozatzen\Model\ gozatzen_model($app);

@@ -7,6 +7,13 @@ javascript:q=(escape(document.location.href));(function(){window.open('http://lo
 
 Aplikazio honek composer erabiltzen du eta vendor-ak sartu gabe daude.
 
+Karpetak hauek baimen guztiak behar dituzte (777)
+
+/web/
+/generator/
+
+aitiba@generator:/var/www/generator$ chmod 777 web -R
+
 -----------------------------------------------------------------
 
 Guarda tus enlaces favoritos con un solo click.

@@ -30,33 +30,84 @@ class templateController extends template
 
     parent::__construct($data);
 
-    if ($this->_openController()) { 
-    echo "HOLA";
-    } else {
-      echo "ERROR al crear el fichero";
-    }
+     if ($this->_backup()) { 
+      if ($this->_openController()) { 
+      echo "HOLA";
+      } else {
+        echo "ERROR al crear el fichero";
+      }
+     } else {
+        echo "ERROR al crear el fichero";
+     }
   }
 
    /**
-   * template. create
+   * templateController._backup
+   * Make a copy of web/index.php on web/indexYYYYMMDDHHiiss.php
+   *
+   * @access public
+   * @since 0.0
+   *
+   *
+   * @return bool
+   */
+
+   public function _backup()
+   {
+    $file = __DIR__."/../../../../web/index.php";
+    $file_backup = __DIR__."/../../../../web/index_".date('YmdHis').".php";
+    if (copy($file, $file_backup)) {
+      echo "<p style='color:green'>Copia de seguridad creada para web/index.php</p>";
+      return true;
+    } else {
+      echo "<p style='color:red'>ERROR al copiar web/index.php</p>";
+      return false;
+    }
+   }
+
+   /**
+   * templateController._openController
    *
    *
    * @access public
    * @since 0.0
    *
    *
-   * @return mixed
+   * @return bool
    */
 
    public function _openController()
    {
+    $add = $edit = $delete = $list = false;
+  // $actionsToOpen = array("add", "edit", "delete", "list");
     $file = __DIR__."/../../../../web/index.php";
     $controller = fopen($file, 'r') or die("can't open file");
     $read_file = fread($controller, filesize($file));
     $read_file = substr($read_file, 0, -13);
+
+    /* To know if the action is setted. If not setted, is copied.If is setted, isnt copied */
+    
+    if (!strpos($read_file, $this->table."/add")) {
+         $add = true;
+    }
+
+    if (!strpos($read_file, $this->table."/edit")) {
+         $edit = true;
+    }
+
+    if (!strpos($read_file, $this->table."/delete")) {
+         $delete = true;
+    }
+
+    if (!strpos($read_file, $this->table."/edit")) {
+         $list = true;
+    }
+    //}
     fclose($controller);
 
     $data = $read_file."\n";
+
+    if($add) {
     $data .= "\n\$app->match('/".$this->table."/add', function () use (\$app){
      \$data = null;
    \$".$this->app_name."_model = 
@@ -72,9 +123,11 @@ var_dump(\$_POST);
         require_once __DIR__.'/../generator/gozatzen/view/links/add.php';
       }
 })
-->method('GET|POST');
+->method('GET|POST');";
+  }
 
-\$app->match('/".$this->table."/edit/{id}', function (\$id) use (\$app){
+ if($edit) {
+$data .= "\$app->match('/".$this->table."/edit/{id}', function (\$id) use (\$app){
    \$data = null;
    \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
@@ -89,9 +142,11 @@ var_dump(\$_POST);
         require_once __DIR__.'/../generator/gozatzen/view/links/edit.php';
       }
 })
-->method('GET|POST');
+->method('GET|POST');";
+}
 
-\$app->match('/".$this->table."/delete/{id}', function (\$id) use (\$app){
+ if($delete) {
+$data .= "\$app->match('/".$this->table."/delete/{id}', function (\$id) use (\$app){
   \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
    if (\$".$this->app_name."_model->delete".ucfirst($this->table)."(array('id' => \$id))) {
@@ -100,10 +155,11 @@ var_dump(\$_POST);
       echo 'ERROR!';
    }
 })
-->method('GET|POST');
+->method('GET|POST');";
+}
 
-
-\$app->match('/".$this->table."/list/{desde}', function (\$desde) use (\$app){
+ if($list) {
+$data .= "\$app->match('/".$this->table."/list/{desde}', function (\$desde) use (\$app){
    \$cuantos = 10;
   \$".$this->app_name."_model = 
       new ".ucfirst($this->app_name)."\Model\ ".$this->app_name."_model(\$app);
@@ -118,6 +174,7 @@ var_dump(\$_POST);
    }
 })
 ->method('GET');\n\n";
+}
     $data .= "\$app->run();";
     $controller = fopen($file, 'w') or die("can't open file");
     fwrite($controller, $data);
