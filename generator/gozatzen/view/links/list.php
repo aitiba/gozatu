@@ -21,12 +21,20 @@
         </p> 
         <table cellspacing='1' class='tablesorter' border='0'>
           <thead>
-            <tr> <th class='header headerSortUp'>Id</th> <th class='header headerSortUp'>Url</th> <th class='header headerSortUp'>Created</th> <th class='header headerSortUp'>Ip</th><td colspan='2'></td>
+            <tr> <th class='header headerSortUp'>Id</th>
+ <th class='header headerSortUp'>Url</th>
+ <th class='header headerSortUp'>Created</th>
+ <th class='header headerSortUp'>Ip</th>
+<td colspan='2'></td>
                     </tr>
       </thead>
       <tbody>
                   <?php foreach ($data as $d) { ?>
-                    <tr><td><?php echo $d['id'] ?></td><td><?php echo $d['url'] ?></td><td><?php echo $d['created'] ?></td><td><?php echo $d['ip'] ?></td><td><a href='edit\<?php echo $d['id'] ?>'>Editar</a></td>
+                    <tr><td><?php echo $d['id'] ?></td>
+<td><?php echo $d['url'] ?></td>
+<td><?php echo $d['created'] ?></td>
+<td><?php echo $d['ip'] ?></td>
+<td><a href='edit\<?php echo $d['id'] ?>'>Editar</a></td>
                 <td><a href='delete\<?php echo $d['id'] ?>'>Borrar</a></td>
                 </tr>
                 <?php } ?>

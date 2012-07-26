@@ -1,0 +1,22 @@
+<?php
+
+namespace Gozatzen\Model;
+
+class baseModel 
+{
+
+	protected $app;
+
+	echo $variables;
+
+	function __construct($app) 
+	{
+		$this->app = $app;
+	}
+
+	public function set($column = null) 
+	{
+		echo "SET";
+		gozatzen_model::$column = $column;
+	}
+}

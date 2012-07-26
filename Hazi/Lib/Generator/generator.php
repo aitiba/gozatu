@@ -118,11 +118,6 @@ class generator
     private function _generate_model() {
       //$app_name = "gozatzen";
       
-      echo "MODEL<br />";
-     // echo "App: ";var_dump($this->app);echo "<br />";
-      echo "Type: ".$this->type."<br />";
-      echo "Table: ".$this->table."<br />";
-
       $data = array (
                     'app' => $this->app,
                     'app_name' => $this->app_name,
@@ -131,9 +126,7 @@ class generator
       //crea el fichero y le mete lo comun para todos los modelos
       //require("../generator/src/view/model_view.php");
       $templateModel = new Template\templateModel($data);
-
-echo "DATOS DE LA SESSION<br />";
-   // print_r($app["session"]);
+  // print_r($app["session"]);
     /*if ($data) {
          return $app['twig']->render('gozatzen.twig', array(
         'data' => $data,

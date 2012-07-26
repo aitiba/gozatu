@@ -32,7 +32,6 @@ class templateController extends template
 
      if ($this->_backup()) { 
       if ($this->_openController()) { 
-      echo "HOLA";
       } else {
         echo "ERROR al crear el fichero";
       }
@@ -153,6 +152,7 @@ var_dump(\$_POST);
 
     fclose($controller);
 
+    echo "\nControlador generado.".$this->table."\n";
     return true;
    }
 

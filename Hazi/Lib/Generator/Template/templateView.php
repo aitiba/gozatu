@@ -30,10 +30,8 @@ class templateView extends template
 
     parent::__construct($data);
 
-    echo $this->_createViews();
-
     if ($res=$this->_createViews()) { 
-    echo "HOLA";
+      echo "\nVistas generadas para add,edit y list.\n";
     } else {
       echo "ERROR al crear el fichero de ".$res;
     }
@@ -67,6 +65,8 @@ class templateView extends template
    elseif (!$this->_createViewEdit()) return 'edit';
   // elseif (!$this->_createViewDelete()) return 'delete';
    elseif (!$this->_createViewList()) return 'list';
+
+   return true;
 }
 
    public function _createViewAdd()
@@ -182,7 +182,7 @@ class templateView extends template
             <tr>";
 
         foreach ($this->app['session']->get('schema') as $column) {
-          $data .= " <th class='header headerSortUp'>".ucfirst($column["Field"])."</th>";
+          $data .= " <th class='header headerSortUp'>".ucfirst($column["Field"])."</th>\n";
         }
         $data .= "<td colspan='2'></td>
                     </tr>
@@ -192,7 +192,7 @@ class templateView extends template
                     <tr>";
         foreach ($this->app['session']->get('schema') as $column) {
        //      if ($column["Field"] != 'id' AND $column["Field"] != 'created') {
-            $data .= "<td><?php echo \$d['".$column["Field"]."'] ?></td>";
+            $data .= "<td><?php echo \$d['".$column["Field"]."'] ?></td>\n";
            }
         //}
       $data .= "<td><a href='edit\<?php echo \$d['id'] ?>'>Editar</a></td>

@@ -47,10 +47,7 @@ class templateModel extends template
    {
       // TODO: Se queda vacio por ahora
     
-      echo "TEMPLATEMODEL.CREATE<br />";
-
-      echo "DATA "; var_dump($this->table);
-      //mkdir("../generator/".$app_name."/"); 
+       //mkdir("../generator/".$app_name."/"); 
       $this->model = fopen(__DIR__."/../../../../generator/".$this->app_name."/".$this->table."_model.php", "w");
       if(!$this->model) return false;
 
@@ -70,13 +67,7 @@ class templateModel extends template
 
     public function _fill() 
     {
-      echo $this->app_name;
-      echo $this->table;
-
-      echo "TEMPLATEMODEL.FILL<br />";
-
- // TODO: Metodo de add, edit($id), delete($id)
-
+   
 $variables = "";
 $setgetters = "";
 $getBy = "";
@@ -212,6 +203,7 @@ class ".$this->app_name."_model
 if (!fwrite($this->model, $write)) return false;
 //return true;
 fclose($this->model);
+echo "Modelo generado.".$this->table."\n";
 return new Response('html generado!');
     }
 }

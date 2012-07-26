@@ -33,7 +33,6 @@ class template
 
    public function _create()
    {
-     echo "TEMPLATE.CREATE<br />";
      return true;
    }
 
@@ -50,7 +49,6 @@ class template
 
     public function _fill() 
     {
-      echo "TEMPLATE.FILL<br />";
-      return true;
+     return true;
     }
 }
